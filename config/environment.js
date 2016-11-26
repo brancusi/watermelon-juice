@@ -16,11 +16,19 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    }
-  };
+    },
 
-  ENV['firebase'] = {
-    host: process.env.PRODUCTION_FIREBASE_URL
+    EmberHammertime: {
+      touchActionSelectors: ['button', 'input', 'a', 'textarea'],
+      touchActionProperties: 'touch-action: manipulation; -ms-touch-action: manipulation; cursor: pointer;'
+    },
+
+    apiHost:process.env.API_HOST,
+
+    firebase: {
+      host: process.env.FIREBASE_URL
+    }
+
   };
 
   ENV.contentSecurityPolicy = {
@@ -45,10 +53,6 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
-
-    ENV['firebase'] = {
-      host: process.env.STAGING_FIREBASE_URL
-    };
   }
 
   if (environment === 'test') {
@@ -69,7 +73,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.apiHost = process.env.API_HOST;
+
   }
 
   return ENV;
