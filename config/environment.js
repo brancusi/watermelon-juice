@@ -60,6 +60,10 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
+
+    ENV['firebase'] = {
+      host: process.env.TEST_FIREBASE_URL
+    };
   }
 
   if (environment === 'production') {
