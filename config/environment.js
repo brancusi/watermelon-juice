@@ -19,7 +19,9 @@ module.exports = function(environment) {
     }
   };
 
-  ENV.apiHost = process.env.DEV_API_HOST;
+  ENV['firebase'] = {
+    host: process.env.PRODUCTION_FIREBASE_URL
+  };
 
   ENV.contentSecurityPolicy = {
     'default-src': "'none'",
@@ -37,16 +39,16 @@ module.exports = function(environment) {
     routeIfAlreadyAuthenticated: 'route-plans'
   };
 
-  ENV['firebase'] = {
-    host: process.env.FIREBASE_URL
-  };
-
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+
+    ENV['firebase'] = {
+      host: process.env.STAGING_FIREBASE_URL
+    };
   }
 
   if (environment === 'test') {
