@@ -68,7 +68,7 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
 
     ENV['firebase'] = {
-      host: "https://watermelon-juice-testing.firebaseio.com"
+      host: process.env.TEST_FIREBASE_URL
     };
   }
 
