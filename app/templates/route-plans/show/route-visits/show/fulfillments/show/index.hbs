@@ -22,12 +22,13 @@
 <div class="row center">
   <div class="card-1">
     {{ui/icon-button
+      class="submitRouteVisit"
       icon="done"
       label=(if model.routeVisit.hasMultipleFulfillments "Submit Order" "Complete Visit")
       size="2"
       color=white
       backgroundColor=colors.DARK_GREY
-      
+      disabled=(or (not model.stock.tracked) (not model.pod.isValid))
       onClick=(route-action 'submit' model)}}
   </div>
 </div>

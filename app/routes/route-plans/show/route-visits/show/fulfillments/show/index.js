@@ -37,8 +37,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       } else {
         this.navigator.requestReverse("route-plans.show.index");
       }
-
-      model.prepareStock();
     }
   }
 });

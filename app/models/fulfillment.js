@@ -33,24 +33,6 @@ export default Model.extend({
 
   hasSignature:           alias("pod.isValid"),
 
-  prepareStock() {
-    const location = this.get("order.location");
-    const itemDesires = location.get("itemDesires");
-
-    if(this.belongsTo("stock").id() || this.belongsTo("stock").value()) {
-      const stock = this.get("stock");
-      const missingItemDesires = itemDesires
-        .filter(itemDesire => itemDesire.get("enabled"))
-        .filter(itemDesire =>
-          !stock.get("stockLevels")
-            .find(sl => sl.get("item.id") === itemDesire.get("item.id")));
-
-      missingItemDesires
-        .forEach(itemDesire => this.store.createRecord("stock-level", {stock, item:itemDesire.get("item")}));
-
-    }
-  },
-
   async syncDependencies() {
     const creditNote = await get(this, 'creditNote'),
           creditNoteItems = await get(this, "creditNote.creditNoteItems"),
