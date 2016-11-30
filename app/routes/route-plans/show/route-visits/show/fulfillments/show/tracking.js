@@ -26,7 +26,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         });
 
       missingItems
-        .forEach(item => this.store.createRecord("stock-level", {stock, item}));
+        .forEach(async item => this.store.createRecord("stock-level", {stock, item}));
     }
   },
 

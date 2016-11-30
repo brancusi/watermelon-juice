@@ -16,7 +16,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       routeVisit.set("routeVisitState", "fulfilled");
       routeVisit.set("completedAt", moment().toDate());
 
-      this.get("remoteSync").enqueue(routeVisit);
+      Ember.run(() => {
+        this.get("remoteSync").enqueue(routeVisit);
+      });
 
       this.transitionTo('route-plans.show');
     },
