@@ -4,7 +4,10 @@ import Ember from "ember";
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   async model() {
     const fulfillment = this.modelFor('route-plans.show.route-visits.show.fulfillments.show');
-    await this.prepareStock(fulfillment);
+
+    await Ember.run(async () => {
+      await this.prepareStock(fulfillment);
+    });
 
     return fulfillment;
   },

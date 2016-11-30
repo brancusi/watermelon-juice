@@ -1,6 +1,7 @@
 import Ember from "ember";
 import Model from "ember-data/model";
 import attr from "ember-data/attr";
+import computed from 'ember-computed-decorators';
 import { belongsTo } from "ember-data/relationships";
 
 const {
@@ -32,6 +33,11 @@ export default Model.extend({
   belongsToPurchaseOrder: not("belongsToSalesOrder"),
 
   hasSignature:           alias("pod.isValid"),
+
+  @computed('pod.isValid', 'stock.tracked', 'order.isPurchaseOrder')
+  isSubmissible(isPodValid, isStockTracked, isPurchaseOrder) {
+    return (isPodValid && isStockTracked) || (isPurchaseOrder && isPodValid);
+  },
 
   async syncDependencies() {
     const creditNote = await get(this, 'creditNote'),
