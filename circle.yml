@@ -1,0 +1,9 @@
+machine:
+  node:
+    version: 0.10.22
+
+dependencies:
+  pre:
+    - npm install phantomjs-prebuilt
+    - npm install
+    - bower install
