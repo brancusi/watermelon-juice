@@ -213,7 +213,8 @@ export default Ember.Service.extend({
           };
 
           Ember.$.ajax(options)
-            .fail(() => {
+            .fail(res => {
+              LE.error("[Remote Sync]", res.status, res.responseJSON);
               this.isProcessing = false;
             })
             .done(async () => {
