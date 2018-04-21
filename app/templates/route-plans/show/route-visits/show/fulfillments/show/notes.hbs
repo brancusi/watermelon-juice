@@ -1,0 +1,19 @@
+{{#ember-wormhole to="navHeaderContainer"}}
+  {{headers/fulfillment-info model=model}}
+{{/ember-wormhole}}
+
+{{markdown-to-html model.location.deliveryNote}}
+
+<hr>
+
+<div class="row center uiContainer">
+  <div class="card-1">
+    {{ui/icon-button
+      icon="arrow_back"
+      label="Go Back"
+      size="2"
+      color=white
+      backgroundColor=colors.DARK_GREY
+      onClick=(route-action 'goBack')}}
+  </div>
+</div>
