@@ -2,7 +2,14 @@
   {{headers/fulfillment-info model=model}}
 {{/ember-wormhole}}
 
-{{markdown-to-html model.location.deliveryNote}}
+<div class="copy-section">
+  {{#if model.location.hasDeliveryNote}}
+    {{markdown-to-html model.location.deliveryNote}}
+  {{else}}
+    <h4>No notes yet for this location.</h4>
+    <h5>Email <a href="mailto:az@mlvk.org">az@mlvk.org</a> with notes, and we will add them for the next round</h5>
+  {{/if}}
+</div>
 
 <hr>
 
